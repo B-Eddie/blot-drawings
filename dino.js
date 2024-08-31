@@ -14,12 +14,12 @@ const exclaim = [];
 const arms = [];
 
 const bodyOutline = [];
-const bodyEyes = [];
-const bodyMouth = [];
-const bodyCheecks = [];
+// const bodyEyes = [];
+// const bodyMouth = [];
+// const bodyCheecks = [];
+const bodyFace = []
+const bodyBack = [];
 const bodyBelly = [];
-
-const bo = new bt.Turtle()
 
 const turnMove = (turtle, direction, directionAngle, length) => {
   switch (direction) {
@@ -35,19 +35,12 @@ const turnMove = (turtle, direction, directionAngle, length) => {
   turtle.forward(length)
 }
 
-// const turnRight = (turtle, direction, length) =>  {
-//   turtle.right(direction)
-//   turtle.forward(length)
-// }
-// const turnLeft = (turtle, direction, length) =>  {
-//   turtle.right(direction)
-//   turtle.forward(length)
-// }
 const angleMove = (turtle, direction, length) =>  {
   turtle.setAngle(direction)
   turtle.forward(length)
 }
 
+const bo = new bt.Turtle()
 
 bo.pos = [61, 93]
 bo.up();
@@ -79,7 +72,56 @@ bo.arc(-88, 16)
 bo.right(381)
 bo.arc(-54, 25)
 
-body.push(...bo.lines())
+const bb = new bt.Turtle()
+bb.pos = [66, 91]
+bb.up();
+bb.down();
+bb.right(269)
+bb.arc(171, 9)
+
+bb.pos = [82, 76]
+bb.up();
+bb.down();
+bb.right(220)
+bb.arc(181, 8)
+
+bb.pos = [87, 55]
+bb.up();
+bb.down();
+bb.right(213)
+bb.arc(181, 8)
+
+bb.pos = [87, 37]
+bb.up();
+bb.down();
+bb.right(192)
+bb.arc(181, 6)
+
+bb.pos = [95, 27]
+bb.up();
+bb.down();
+bb.right(133)
+bb.arc(181, 5)
+
+
+const be = new bt.Turtle()
+be.pos = [47, 82]
+be.up();
+be.down();
+be.right(127)
+be.arc(360, 1.5)
+
+be.pos = [65, 81.5]
+be.up();
+be.down();
+be.right(127)
+be.arc(360, 1.5)
+
+bodyOutline.push(...bo.lines())
+bodyBack.push(...bb.lines())
+bodyFace.push(...be.lines())
+
+body.push(...bodyOutline,  ...bodyBack, ...bodyFace)
 
 const final = [...body, ...back, ...exclaim, ...arms]
 drawLines(final)
