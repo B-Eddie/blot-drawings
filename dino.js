@@ -191,6 +191,15 @@ turnMove(bl, "left", 38, 2)
 bl.right(-40)
 bl.arc(103, 5)
 turnMove(bl, "left", 34, 2)
+bl.pos = [68, 78] 
+bl.up()
+bl.down()
+turnMove(bl, "left", 23, 2.5)
+bl.pos = [69.6, 79.1] 
+bl.up()
+bl.down()
+turnMove(bl, "left", 3, 3.5)
+bl.setAngle(-80)
 
 bl.pos = [35, 76] 
 bl.up()
@@ -202,11 +211,101 @@ bl.right(-40)
 bl.arc(103, 5)
 turnMove(bl, "left", 37, 2.1)
 
+bl.pos = [37, 78] 
+bl.up()
+bl.down()
+turnMove(bl, "left", 23, 2.5)
+bl.pos = [39.5, 78.5] 
+bl.up()
+bl.down()
+turnMove(bl, "left", -7, 2.8)
+
+const arm = new bt.Turtle()
+function rightarm(angle) {
+  arm.setAngle(angle)
+  arm.pos = [79, 62] 
+  arm.up()
+  arm.down()
+  turnMove(arm, "left", 16, 12)
+  arm.right(46)
+  arm.arc(-43, 6)
+  arm.right(17)
+  arm.arc(-35, 11)
+  turnMove(arm, "left", -62, 11)
+
+  // arm.pos = [99, 73]
+  // arm.up()
+  // arm.down()
+  arm.up()
+  arm.setAngle(9 + angle)
+  arm.forward(8)
+  // arm.up()
+  arm.setAngle(-32 + angle)
+  arm.forward(1)
+  arm.down()
+  arm.setAngle(-1)
+  arm.forward(0)
+  arm.right(278 - angle)
+  arm.arc(-35, 9)
+}
+function leftarm(angle) {
+  arm.setAngle(angle)
+  arm.pos = [50, 57] 
+  arm.up()
+  arm.down()
+  turnMove(arm, "left", 16, 12.3)
+  arm.right(46)
+  arm.arc(-43, 6)
+  arm.right(17)
+  arm.arc(-35, 11)
+  turnMove(arm, "left", -62, 11.0)
+}
+
+const random = Math.floor(Math.random() * (86 - 15 + 1)) + 155
+const opprandom = 180 - random
+leftarm(random)
+rightarm(opprandom)
+
+
+const ex = new bt.Turtle()
+// ex.pos = [63, 57] 
+// ex.up()
+// ex.down()
+// turnMove(ex, "left", 16, 6.3)
+function createTriangle(sideLength, height, y, x, angle) {
+    const rad = (Math.PI / 180) * angle;
+
+    const vertices = [
+        [0, 0],
+        [sideLength, 0],
+        [sideLength / 2, -height]
+    ].map(([vx, vy]) => [
+        Math.cos(rad) * vx - Math.sin(rad) * vy + y,
+        Math.sin(rad) * vx + Math.cos(rad) * vy + x
+    ]);
+
+    vertices.push(vertices[0]);
+
+    drawLines([vertices]);
+}
+
+if (Math.floor(Math.random() * 2) == 1) {
+  createTriangle(6, 9, 31, 97, 40)
+  createTriangle(5, 13, 25, 91, 75)
+  createTriangle(5, 14, 36, 105, 9)
+} else {
+  createTriangle(8, 14, 27, 99, 40)
+  createTriangle(5, 10, 28, 90, 75)
+  createTriangle(5, 10, 36, 102, 9)
+}
+
 
 bodyOutline.push(...bo.lines())
 bodyBack.push(...bb.lines())
 bodyFace.push(...be.lines())
 bodyBelly.push(...bl.lines())
+arms.push(...arm.lines())
+// exclaim.push(...ex.lines())
 
 body.push(...bodyOutline,  ...bodyBack, ...bodyFace, ...bodyBelly)
 
