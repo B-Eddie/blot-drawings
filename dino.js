@@ -261,7 +261,7 @@ function leftarm(angle) {
   turnMove(arm, "left", -62, 11.0)
 }
 
-const random = Math.floor(Math.random() * (86 - 15 + 1)) + 155
+const random = bt.randInRange(159, 220)
 const opprandom = 180 - random
 leftarm(random)
 rightarm(opprandom)
@@ -289,7 +289,7 @@ function createTriangle(sideLength, height, y, x, angle) {
     drawLines([vertices]);
 }
 
-if (Math.floor(Math.random() * 2) == 1) {
+if (Math.floor(bt.randInRange(0, 2)) == 1) {
   createTriangle(6, 9, 31, 97, 40)
   createTriangle(5, 13, 25, 91, 75)
   createTriangle(5, 14, 36, 105, 9)
